@@ -6,6 +6,8 @@ TagManager:
   tags:
   - wall_right
   - wall_left
+  - brick
+  - unbreakable_brick
   layers:
   - Default
   - TransparentFX
