@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ballMovement : MonoBehaviour
@@ -11,7 +12,7 @@ public class ballMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -23,7 +24,8 @@ public class ballMovement : MonoBehaviour
 
         if (bricks.Length == 0)
         {
-            Debug.Log("Win!!");
+            Debug.Log("WIN!!");
+            nextLevel();
         }
     }
 
@@ -73,7 +75,19 @@ public class ballMovement : MonoBehaviour
     {
         if (transform.position.y < GameObject.FindGameObjectWithTag("Player").transform.position.y  - 5)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    void nextLevel(){
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if(nextSceneIndex < SceneManager.sceneCountInBuildSettings){
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+
+        else{
+            SceneManager.LoadScene(0);
         }
     }
 }
